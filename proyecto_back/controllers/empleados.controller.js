@@ -1,88 +1,78 @@
-const Empleado = require("../models/empleados.model"); 
+const  Empleado = require("../models/empleados.model");
 let response ={
     msg: "",
     exito: false
-}
-//CREACION
+}   
 exports.create = function(req,res){
-    let empleado = new Empleado({
-        id_empleado: req.body.id_empleado,
+    let empleado =  new Empleado({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono,
-        email: req.body.email,
-        direccion : req.body.direccion,
-        horario: req.body.horario,
+        correo: req.body.correo,
+        direccion: req.body.direccion
     })
-
     empleado.save(function(err){
         if(err){
-            console.error(err), 
-            response.exito = false,
-            response.msg = "Error al guardar el empleado" 
-            res.json(response)
-            return;
+        console.log = false,
+        response.exito = false,
+        response.msg = "Error al guardar el empleado"
+        res.json(response)
+        return;  
         }
-
         response.exito = true,
-        response.msg = "El empleado se guardó correctamente"
+        response.msg = "El empleado se guardo correctamente"
         res.json(response)
     })
 }
-//CONSULTAR TOTAL
-exports.find = function(req,res){
-    Empleado.find(function(err, empleados){
-        res.json(empleados)
-    })
+
+exports.find= function(req,res){
+    Empleado.find(function(err,empleados){
+     res.json(empleados)
+        })
 }
 
-//CONSULTAR UN REGISTRO
 exports.findOne = function(req,res){
-    Empleado.findOne({id_empleado: req.params.id_empleado},function(err, empleado){
+    Empleado.findOne({_id: req.params.id}, function(err,empleado){
         res.json(empleado)
     })
 }
 
-//UPDATE
 exports.update = function(req,res){
     let empleado = {
-        id_empleado: req.body.id_empleado,
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         telefono: req.body.telefono,
-        email: req.body.email,
-        direccion : req.body.direccion,
-        horario: req.body.horario
+        correo: req.body.correo,
+        direccion: req.body.direccion       
     }
-    
-    Empleado.findByIdAndUpdate(req.params.id, {$set: empleado}, function(err){
-        if(err){
-            console.error(err), 
-            response.exito = false,
-            response.msg = "Error al modificar el empleado"
-            res.json(response)
-            return;
-        }
 
-        response.exito = true,
-        response.msg = "El empleado se modifico correctamente"
+Empleado.findByIdAndUpdate(req.params.id, {$set: empleado}, function(err){
+    if(err){
+        console.error(err),
+        response.exito = false,
+        response.msg = "Error al modificar el empleado"
         res.json(response)
+        return;
+    }
+
+    response.exito = true,
+    response.msg = "El empleado se modifico correctamente"
+    res.json(response)
     })
+
 }
 
-//DELETE
 exports.remove = function(req,res){
-    Empleado.findByIdAndRemove({id_empleado: req.params.id}, function(err){
+    Empleado.findByIdAndRemove({_id: req.params.id}, function(err){
         if(err){
-            console.error(err), 
+            console.error(err),
             response.exito = false,
             response.msg = "Error al eliminar el empleado"
             res.json(response)
             return;
         }
-
-        response.exito = true,
-        response.msg = "El empleado se elimino correctamente"
-        res.json(response)
+    response.exito = true,
+    response.msg = "El empleado se elimino correctamente"
+    res.json(response)
     })
 }
