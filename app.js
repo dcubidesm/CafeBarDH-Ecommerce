@@ -3,13 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var database = require("./config/database");//Conexion a la base de datos dh con mongodb
+var database = require("./config/database");
+var auth = require("./auth/main_auth")
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var empleadosRouter = require('./routes/empleados.router');
+var productosRouter = require('./routes/productos.router');
+var usuariosRouter = require('./routes/usuario.router');
+
 
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,14 +20,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//LLamado de la funcion de Conexion
+//Conexion a la base de datos de mongo
 database.mongoConnect();
 
+app.use('/usuarios', usuariosRouter);
+
+app.use(auth)
+
 //Router
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/empleados',empleadosRouter);
+app.use('/empleados', empleadosRouter);
+app.use('/productos', productosRouter);
 
 
 // catch 404 and forward to error handler
