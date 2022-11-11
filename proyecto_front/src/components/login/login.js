@@ -2,8 +2,13 @@ import React from "react";
 import axios from "axios";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import './login.css';
+import { isNull } from 'util';
+import Cookies from 'universal-cookie';
+import { calculaExtraccionSesion } from '../helper/helper';
+import Loading from "../loading/loading";
 import app from "../app.json";
 
+const cookies = new Cookies();
 const {APIHOST} = app;
 
 export default class login extends React.Component {
@@ -21,9 +26,17 @@ export default class login extends React.Component {
         pass: this.state.pass,
     }
     )
-    .then((response) =>{
-        console.log(response);
-    })
+    .then((response) => {
+      if (isNull(response.data.token)) {
+        alert("usuario y/o contraseña invalidas");
+      } else {
+        cookies.set("_s", response.data.token, {
+        path: "/",
+        expires: calculaExtraccionSesion(),
+          });
+        }
+      })
+
     .catch((err) =>{
         console.log(err);
     });
@@ -31,7 +44,8 @@ export default class login extends React.Component {
 
   render() {
     return (
-      <Container id="login-container">
+      <Container id="login-container" >
+        <Loading />
         <Row>
           <Col>
             <Row>
