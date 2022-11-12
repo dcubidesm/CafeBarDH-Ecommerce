@@ -1,18 +1,30 @@
-import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import React from "react";
+import { Spinner } from "react-bootstrap";
 import "./loading.css";
 
 export default class loading extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      Loading: false,
+    };
+  }
+
+  componentWillReceivedPropos(nextProps){
+    if (nextProps.show !== this.state.show) {
+    this.setState({ show: nextProps.show });
     }
-    render() { 
-        return (  
-            <div id="loading-backdrop">
-                <Spinner animation="border" variant="primary" />
-            </div>
-        );
-    }
+  }
+  
+  render() {
+    return (
+      <>
+        {this.state.show ? (
+          <div id="loading-backdrop">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        ) : null}
+      </>
+    );
+  }
 }
- 
