@@ -5,3 +5,10 @@
     float: left;
     margin-bottom: 20px;
 }
+.search-Label {
+    float: right;
+    padding-bottom: 10px;
+}
+.sr-only {
+    font-size: 0;
+}

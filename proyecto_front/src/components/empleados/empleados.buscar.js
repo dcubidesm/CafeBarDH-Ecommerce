@@ -1,99 +1,35 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import DataGrid from "../grid/grid";
 import { request } from "../helper/helper";
 import "./empleados.css";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory, {
-  PaginationProvider,
-  PaginationListStandalone,
-  SizePerPageDropdownStandalone,
-} from "react-bootstrap-table2-paginator";
-import ToolkitProvider, {
-  Search,
-} from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
 
-const { SearchBar } = Search;
-
-const products = [
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-  {
-    id: 1,
-    name: "Gaseosa",
-    price: 1200,
-  },
-];
 
 const columns = [
   {
-    dataField: "id",
-    text: "Product ID",
+    dataField: "_id",
+    text: "ID",
+    hidden: true,
   },
   {
-    dataField: "name",
-    text: "Product Name",
+    dataField: "nombre",
+    text: "Nombre",
   },
   {
-    dataField: "price",
-    text: "Product Price",
+    dataField: "apellido",
+    text: "Apellido",
+  },
+  {
+    dataField: "telefono",
+    text: " Teléfono",
+  },
+  {
+    dataField: "correo",
+    text: "Correo Electrónico",
+  },
+  {
+    dataField: "direccion",
+    text: " Dirección",
   },
 ];
 
@@ -103,51 +39,25 @@ export default class EmpleadosBuscar extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    request
+      .get(this.props.url)
+      .then((response) => {
+        this.setState({ rows: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
-    const options = {
-      custom: true,
-      totalSize: products.length,
-    };
     return (
       <Container id="empleados-buscar-container">
         <Row>
-          <h1>Buscar Productos</h1>
+          <h1>Buscar Empleados</h1>
         </Row>
         <Row>
-          <ToolkitProvider
-            keyField="id"
-            data={products}
-            columns={columns}
-            search
-          >
-            {(props) => (
-            <>
-                <h3>Input something at below input field:</h3>
-                <SearchBar {...props.searchProps} />
-                <hr />
-                <PaginationProvider pagination={paginationFactory(options)}>
-            {({ paginationProps, paginationTableProps }) => (
-              <div>
-                <SizePerPageDropdownStandalone {...paginationProps} />
-                <BootstrapTable
-                  keyField="id"
-                  data={products}
-                  columns={columns}
-                  {...paginationTableProps}
-                />
-                <PaginationListStandalone 
-                {...paginationProps}
-                {...props.baseProps}
-                />
-              </div>
-            )}
-          </PaginationProvider>
-
-        </>
-            )}
-          </ToolkitProvider>
-
-          
+          <DataGrid url="/empleados" columns={columns} />
         </Row>
       </Container>
     );
