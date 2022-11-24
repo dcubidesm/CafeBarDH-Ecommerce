@@ -1,4 +1,6 @@
 import React from "react";
+import { request } from "../helper/helper";
+import { Row, Col } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
@@ -8,8 +10,8 @@ import paginationFactory, {
 import ToolkitProvider, {
   Search,
 } from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
-import { Row, Col } from "react-bootstrap";
-import { request } from "../helper/helper";
+import Loading from "../loading/loading";
+
 
 
 const { SearchBar } = Search;
@@ -18,23 +20,29 @@ export default class DataGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      Loading: false,
       rows: [],
     };
   }
+  
   componentDidMount() {
     this.getData();
   }
-  //funcion para obtener los datos
-  getData() {
+  getData(){
+    this.setState({ loading: false});
     request
-      .get(this.props.url)
-      .then((response) => {
-        this.setState({ rows: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+    .get(this.props.url)
+    .then((response) => {
+        this.setState({ 
+            rows: response.data,
+            Loading: false,
+         });
+    })
+    .catch((err) => {
+        this.setState({ loading: false});
+        console.error(err);
+    });
+}
 
   render() {
     const options = {
@@ -42,6 +50,8 @@ export default class DataGrid extends React.Component {
       totalSize: this.state.rows.length,
     };
     return (
+      <>
+      <Loading show={this.state.loading} />
       <ToolkitProvider
         keyField="tp"
         data={this.state.rows}
@@ -62,6 +72,7 @@ export default class DataGrid extends React.Component {
                       <SearchBar {...props.searchProps} />
                     </Col>
                   </Row>
+
                   <BootstrapTable
                     keyField="bt"
                     data={this.state.rows}
@@ -76,6 +87,7 @@ export default class DataGrid extends React.Component {
           </>
         )}
       </ToolkitProvider>
+      </>
     );
   }
 }
