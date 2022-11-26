@@ -45,5 +45,21 @@ export const request = {
       },
     });
   },
-  
+  //editar
+  put: function (services, data) {
+    let token = renovarSesion();
+    return axios.put(`${APIHOST}${services}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  delete: function (services) {
+    let token = renovarSesion();
+    return axios.delete(`${APIHOST}${services}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };
