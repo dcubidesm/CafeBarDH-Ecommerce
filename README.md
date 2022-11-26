@@ -40,7 +40,7 @@ utilizar para gestionar dichos elementos. &nbsp;
 
 <li> Diseño de Interfase Web - Javasript, Html y CSS. </li>
 <li> Editor de Código - Visual Code.</li>
-  <li>MERN</li>
+  <li>M.E.R.N.</li>
   <ol>
     <li> Aplicación de comunicación con Base de Datos - MongoDB.</li>
     <li> Interacción cliente y servidor - Express.</li>
