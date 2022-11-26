@@ -17,7 +17,7 @@ desarrollo del proyecto CafeBarDH, e incluye los lineamientos básicos para el
 manejo de versiones, actividades y responsabilidades de los distintos actores.
 </p>
 
-<h1 align="center"> Plan de Gestión de configuración </h1>
+<h1 align="center"> Plan de Gestión de configuración. </h1>
 <p align="justify">
 La actividad de identificación de la configuración consiste en establecer los
 elementos que serán controlados, establece esquemas para la identificación
@@ -54,3 +54,10 @@ utilizar para gestionar dichos elementos. &nbsp;
  <li>  Tablas Dinamicas de Datos - React-Boostrap-Table2</li>
 
 </ul>
+
+<h1 align="center"> Autores.</h1>
+
+
+| [<img src="https://avatars.githubusercontent.com/u/111820300?v=4" width=115><br><sub>DIANA PAOLA CUBIDES MARIN</sub>](https://github.com/dcubidesm) |  <img src="https://avatars.githubusercontent.com/u/108961662?v=4" width=115><br><sub>RAUL VALNERYS MENDEZ ROCHA</sub>](https://github.com/GitRaulM) |  [<img src="https://avatars.githubusercontent.com/u/111820696?v=4" width=115><br><sub>ANGELA MARÍA ELIZALDE LEAL</sub>](https://github.com/angelaemliyc) |  [<img src="" width=115><br><sub>MADELEIN ARELLANO</sub>]() |  [<img src="https://avatars.githubusercontent.com/u/111256252?v=4" width=115><br><sub>ADOLFO AYOLA ESTRADA</sub>](https://github.com/adolfoayola) |
+| :---: | :---: | :---: | :---: | :---: |
+
