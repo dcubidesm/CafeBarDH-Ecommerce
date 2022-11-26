@@ -9,4 +9,12 @@
  
  ![GitHub Org's stars](https://img.shields.io/github/stars/camilafernanda?style=social)
 
+<h1 align="center"> CafeBarDH-Ecommerce </h1>
+
+<p align="justify">
+Este documento sirve de guía para la gestión de configuración del proceso de
+desarrollo del proyecto CafeBarDH, e incluye los lineamientos básicos para el
+manejo de versiones, actividades y responsabilidades de los distintos actores.
+</p>
+
 <h1 align="center"> Tecnologias utilizadas </h1>
