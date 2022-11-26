@@ -30,9 +30,23 @@ utilizar para gestionar dichos elementos. &nbsp;
   
   ![Sin títuloddd](https://user-images.githubusercontent.com/111256252/204072172-1ae29ec7-3932-46ce-9c59-965165607eeb.png)
 
-  <li> Identificación de Elementos de Configuración y Selección de herramientas
-específicas para el desarrollo.</li>
 </ul>
 
 </p>
 <h1 align="center"> Tecnologias utilizadas </h1>
+
+<ul>
+
+
+<li> Diseño de Interfase Web - Javasript, Html y CSS </li>
+<li> Editor de Código - Visual Code</li>
+  <li>MERN</li>
+  <ol>
+    <li> Aplicación de comunicación con Base de Datos - MongoDB</li>
+    <li> Interacción cliente y servidor - Express</li>
+    <li> Interacción cliente y servidor - Node JS</li>
+    <li> Entorno de desarrollo - React</li>
+  </ol>
+
+
+</ul>
